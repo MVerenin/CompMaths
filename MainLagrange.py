@@ -10,14 +10,18 @@ print ("Введите значения неизвестной функции в
 
 ArrF = list(map(float,input().split()))
 
-print ("Введите число точек для построения графика")
+print ("Введите абсциссу точки")
 
-N = int(input())
+x = float(input())
 
-l = L.Lagrange(ArrX, ArrF, N)
+l = L.Lagrange(ArrX, ArrF, x)
 
-VecX = np.linspace(min(ArrX), max(ArrX), N)
-VecY = l.Interpolation()
+print ("Значение многочлена Лагранжа равно ", l.Interpolation(x))
+
+VecX = np.linspace(min(ArrX), max(ArrX), 50)
+VecY = []
+for k in range (50):
+    VecY.append(l.Interpolation(VecX[k]))
 plt.scatter(ArrX, ArrF, color = 'Yellow')
 plt.plot(VecX, VecY, color = 'Black')
 plt.show()
